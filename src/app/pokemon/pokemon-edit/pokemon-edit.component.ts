@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { getPokemonColor } from '../../pokemon.model';
 
  
  @Component({
@@ -60,6 +61,16 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 
     }
 
+
+
+
+   }
+   getPokemonColor(type: string){
+    return getPokemonColor(type); 
+   } 
+
+   getChipTextColor(type: string):'black' | 'white' {
+    return type == 'Electrik' ? 'black' : 'white'
 
    }
 
