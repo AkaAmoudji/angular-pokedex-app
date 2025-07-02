@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
@@ -45,6 +45,12 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
    // recuperer la liste de tous les pokemons selectionnés par l'utilisateur 
    get pokemonTypeList(): FormArray {
     return this.form.get('types') as FormArray;
+
+   }
+
+   get pokemonName(): FormControl {
+    return this.form.get('name') as FormControl;
+
 
    }
    // Méthode qui vérifie si un type de Pokémon est déjà sélectionné
