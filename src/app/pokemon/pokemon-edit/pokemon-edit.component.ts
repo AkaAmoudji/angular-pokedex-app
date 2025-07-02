@@ -22,12 +22,13 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
  export class PokemonEditComponent {
    readonly route = inject(ActivatedRoute);
    readonly pokemonService = inject(PokemonService);
-   readonly pokemonId = signal(
-     Number(this.route.snapshot.paramMap.get('id'))
-   ).asReadonly();
+   readonly pokemonId = Number(this.route.snapshot.paramMap.get('id'));
    readonly pokemon = signal(
-     this.pokemonService.getPokemonById(this.pokemonId())
+     this.pokemonService.getPokemonById(this.pokemonId)
    ).asReadonly();
+   readonly POKEMON_RULES =POKEMON_RULES;
+
+
 
    readonly form = new FormGroup({
     name: new FormControl(this.pokemon().name, [
@@ -42,6 +43,7 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
       this.pokemon().types.map((type) => new FormControl(type))
     ),
    });
+
    // recuperer la liste de tous les pokemons selectionnés par l'utilisateur 
    get pokemonTypeList(): FormArray {
     return this.form.get('types') as FormArray;
@@ -53,6 +55,22 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
 
 
    }
+
+   get pokemonLife(): FormControl {
+    return this.form.get('life') as FormControl;
+
+   }
+
+   incrementLife() {
+    const newValue = this.pokemonLife.value + 1;
+    this.pokemonLife.setValue(newValue);
+   }
+
+   decrementLife() {
+    const newValue = this.pokemonLife.value - 1;
+    this.pokemonLife.setValue(newValue);
+   }
+
    // Méthode qui vérifie si un type de Pokémon est déjà sélectionné
    isPokemonTypeSelected(type: string): boolean {
     // Parcourt la liste des types (FormArray.controls)
