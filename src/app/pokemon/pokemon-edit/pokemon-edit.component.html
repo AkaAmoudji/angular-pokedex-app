@@ -81,8 +81,9 @@
                           readonly
                         />
                         <button 
+                          type = "button"
                           class="btn btn-outline-secondary"
-                          disabled
+                          
                           [disabled]="pokemonLife.value >= POKEMON_RULES.MAX_LIFE"
                           (click)= "incrementLife()"
                         >
@@ -95,16 +96,30 @@
                     <th scope="row">Dégâts</th>
                     <td>
                       <div class="input-group">
-                        <button class="btn btn-outline-secondary" disabled>
+                        <button 
+                          type = "button"
+                          class="btn btn-outline-secondary" 
+                          [disabled]="
+                            pokemonDamage.value <= POKEMON_RULES.MIN_DAMAGE"
+                          (click)="decrementDamage()"
+                        >
                           -
                         </button>
                         <input
                           formControlName="damage"
                           type="number"
                           class="form-control text-center"
-                          [value]="pokemon().damage"
+                          readonly
+                          
+                          
                         />
-                        <button class="btn btn-outline-secondary" disabled>
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary" 
+                          [disabled]="
+                            pokemonDamage.value >= POKEMON_RULES.MAX_DAMAGE"
+                          (click)="incrementDamage()"
+                        >
                           +
                         </button>
                       </div>

@@ -61,6 +61,11 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
 
    }
 
+   get pokemonDamage(): FormControl {
+    return this.form.get('damage') as FormControl;
+  
+   }
+
    incrementLife() {
     const newValue = this.pokemonLife.value + 1;
     this.pokemonLife.setValue(newValue);
@@ -69,6 +74,16 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
    decrementLife() {
     const newValue = this.pokemonLife.value - 1;
     this.pokemonLife.setValue(newValue);
+   }
+
+   incrementDamage() {
+    const newValue = this.pokemonDamage.value + 1;
+    this.pokemonDamage.setValue(newValue);
+   }
+
+   decrementDamage() {
+    const newValue = this.pokemonDamage.value - 1;
+    this.pokemonDamage.setValue(newValue);
    }
 
    // Méthode qui vérifie si un type de Pokémon est déjà sélectionné
