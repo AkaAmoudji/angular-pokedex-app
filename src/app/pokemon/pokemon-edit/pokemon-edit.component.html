@@ -148,6 +148,19 @@
                           >x</span>
                       </button>
                       }
+                      @if(pokemonTypeList.hasError('required')) {
+                        <P class="text-danger">
+                          Veuillez selectionnez aumoins un type pour un pokemon
+                        </P>
+                      }
+
+                      @if(pokemonTypeList.hasError('maxlength')) {
+                        <P class="text-danger">
+                          Veuillez selectionnez au maximun {{
+                          pokemonTypeList.getError('maxlength').requiredLength
+                          }} type pour un pokemon
+                        </P>
+                      }
                       <div class="row mt-3">
                         @for(type of pokemonService.getPokemonTypeList(); track
                         type) {
