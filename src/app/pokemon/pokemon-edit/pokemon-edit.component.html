@@ -195,7 +195,13 @@
                 >
                   RETOUR
                 </button>
-                <button class="btn btn-link text-decoration-none text-warning">
+                <button 
+                  type="submit"
+                  class="btn btn-link text-decoration-none "
+                  [class.text-secondary]="form.invalid"
+                  [class.text-warning]="form.valid"
+                  [disabled]="form.invalid"
+                  >
                   SAUVEGARDER LES CHANGEMENTS
                 </button>
               </div>
