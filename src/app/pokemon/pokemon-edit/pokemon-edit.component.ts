@@ -15,7 +15,7 @@ import { getPokemonColor, POKEMON_RULES } from '../../pokemon.model';
  @Component({
    selector: 'app-pokemon-edit',
    standalone: true,
-   imports: [RouterLink, ReactiveFormsModule],
+   imports: [RouterLink, ReactiveFormsModule, ],
    templateUrl: './pokemon-edit.component.html',
    styles: ``,
  })

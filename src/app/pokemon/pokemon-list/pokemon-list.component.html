@@ -31,7 +31,7 @@
 <div class="container">
     <div class="row">
         @for  (pokemon of pokemonListFiltered(); track pokemon.id) {
-            <div class="col-md-4">
+            <div class="col-md-4 pokemon-card" [routerLink]="['/pokemons', pokemon.id]">
                 <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
                     <div class="row g-0">
                         <div class="col-md-4 d-flex align-items-center justify-content-center bg-light">
@@ -45,8 +45,10 @@
                                     taille : {{ size(pokemon) }} 
 
                                 </h6>
-                                <P class="card-text"> {{pokemon.created | date : "dd/mm/yyyy"}}</P>
+                                <P class="card-text"> {{pokemon.created | date : "dd/MM/yyyy"}}</P>
                                 <p class="card-text">point de vie : {{ pokemon.life }}</p>
+                                <p class="card-text">dégâts : {{ pokemon.damage }}</p>
+                                <!--
                                 <div class="btn-group btn-group-sm" role="group">
                                     <button (click)="incrementeLife(pokemon)" class="btn btn-outline-secondary" [disabled]="pokemon.life > 30 ">+</button>
                                     <button (click)="decrementeLife(pokemon)" class="btn btn-outline-secondary" [disabled]="pokemon.life < 10">-</button>
@@ -59,6 +61,7 @@
                                     voir
                                 </a>
                                 </p>
+                                -->
                             </div>
                             
                                 

@@ -29,6 +29,7 @@
                         placeholder="Nom du Pokémon"
                         [class.is-invalid]="pokemonName.invalid"
                       />
+                      
                       @if(pokemonName.hasError('required')) {
                         <div class="invalid-feedback">
                            Veuillez renseigner ce champ
@@ -58,6 +59,8 @@
                           
                         </div>
                       }
+                      
+                     
 
                       
                     </td>
