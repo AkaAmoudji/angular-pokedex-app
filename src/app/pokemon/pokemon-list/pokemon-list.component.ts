@@ -16,7 +16,9 @@ export class PokemonListComponent {
 
   
   readonly #pokemonService = inject(PokemonService);
-  readonly pokemonList = toSignal(this.#pokemonService.getPokemonList(), {initialValue: []});
+  readonly pokemonList = toSignal(this.#pokemonService.getPokemonList(), {
+    initialValue: []
+  });
   
   readonly searchTerm = signal('')
 
@@ -25,10 +27,11 @@ export class PokemonListComponent {
     const pokemonList = this.pokemonList();
 
     return pokemonList.filter(pokemon => 
-      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      pokemon.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
     );
 
   })
+  readonly loading = computed(() => this.pokemonList().length === 0);
   
   size(pokemon : Pokemon) {
     if(pokemon.life < 15) {
