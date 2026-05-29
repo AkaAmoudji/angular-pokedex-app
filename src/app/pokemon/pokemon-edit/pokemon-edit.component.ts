@@ -1,6 +1,6 @@
 import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
 import {
    FormArray,
@@ -22,6 +22,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
  })
  export class PokemonEditComponent {
    readonly route = inject(ActivatedRoute);
+   readonly router = inject(Router);
    readonly pokemonService = inject(PokemonService);
    readonly pokemonId = Number(this.route.snapshot.paramMap.get('id'));
    readonly pokemon = toSignal(
@@ -150,8 +151,22 @@ import { toSignal } from '@angular/core/rxjs-interop';
    }
 
    onSubmit() {
-    console.log(this.form.value);
-   }
+    const isFormValid = this.form.valid;
+    const pokemon = this.pokemon();
+
+    if(isFormValid && pokemon) {
+      const updatedPokemon = {
+        ...pokemon,
+        name: this.pokemonName.value,
+        life: this.pokemonLife.value,
+        damage: this.pokemonDamage.value,
+        types: this.pokemonTypeList.value,
+      };
+      this.pokemonService.updatePokemon(updatedPokemon).subscribe(() => {
+        this.router.navigate(['/pokemons', pokemon.id]);
+      });
+    }
+   };
 
    
  }
