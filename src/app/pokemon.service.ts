@@ -17,13 +17,11 @@ export class PokemonService {
     return this.#http.get<PokemonList>(this.#POMEMON_API_URL);
   }
 
-  getPokemonById(id: number): Pokemon  {
-    const pokemon = POKEMON_LIST.find(pokemon => pokemon.id == id);
+  getPokemonById(id: number): Observable<Pokemon> {
+    const url = this.#POMEMON_API_URL + '/' + id;
+    return this.#http.get<Pokemon>(url);
 
-    if(!pokemon) {
-      throw new Error(`no Pokemon found whith id ${id}`);
-    }
-    return pokemon;
+    
   }
   getPokemonTypeList(): string[] {
     return [
